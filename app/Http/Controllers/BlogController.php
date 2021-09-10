@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $categories = Category::orderBy('title')->get();
         $posts = Post::paginate(4);
         return view('pages.index', [
@@ -17,9 +18,10 @@ class BlogController extends Controller
         ]);
     }
 
-    public function getPostsByCategory($slug){
+    public function getPostsByCategory($slug)
+    {
         $categories = Category::orderBy('title')->get();
-        $current_category = Category::where('slug',$slug)->first();
+        $current_category = Category::where('slug', $slug)->first();
 
         return view('pages.index', [
             'posts' => $current_category->posts()->paginate(4),
@@ -27,14 +29,16 @@ class BlogController extends Controller
         ]);
     }
 
-    public function getPost($slug_category, $slug_post){
+    public function getPost($slug_category, $slug_post)
+    {
         $post = Post::where('slug', $slug_post)->first();
         $categories = Category::orderBy('title')->get();
 
-        return view('pages.show-post',[
+        return view('pages.show-post', [
             'post' => $post,
             'categories' => $categories,
             'slug_category' => $slug_category,
+            'comments' => $post->comments
         ]);
     }
 }
