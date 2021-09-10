@@ -10,35 +10,36 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $categories = Category::orderBy('title')->get();
-        $posts = Post::paginate(4);
         return view('pages.index', [
-            'posts' => $posts,
-            'categories' => $categories,
+            'posts' => Post::getCachePosts(),
+            'categories' => $this->getCategoriesList(),
         ]);
     }
 
     public function getPostsByCategory($slug)
     {
-        $categories = Category::orderBy('title')->get();
-        $current_category = Category::where('slug', $slug)->first();
+        $current_category = Category::getCacheCategory($slug);
 
         return view('pages.index', [
             'posts' => $current_category->posts()->paginate(4),
-            'categories' => $categories,
+            'categories' => $this->getCategoriesList(),
         ]);
     }
 
     public function getPost($slug_category, $slug_post)
     {
-        $post = Post::where('slug', $slug_post)->first();
-        $categories = Category::orderBy('title')->get();
+        $post = Post::getCachePost($slug_post);
 
         return view('pages.show-post', [
             'post' => $post,
-            'categories' => $categories,
+            'categories' => $this->getCategoriesList(),
             'slug_category' => $slug_category,
             'comments' => $post->comments
         ]);
+    }
+
+    public function getCategoriesList()
+    {
+        return Category::getCacheCategories();
     }
 }

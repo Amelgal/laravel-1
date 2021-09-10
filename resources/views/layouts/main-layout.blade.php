@@ -17,7 +17,7 @@
 <body>
 <header class="navbar navbar-expand-md navbar-light">
     <div class="d-flex container">
-        <a class="navbar-brand me-2 me-xl-4" href="/">UP project</a>
+        <a class="navbar-brand me-2 me-xl-4" href="{{route('index')}}">UP project</a>
         <div class="collapse navbar-collapse order-md-2 flex-row-reverse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
