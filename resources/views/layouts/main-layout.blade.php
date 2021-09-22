@@ -64,7 +64,8 @@
                 @endguest
             </ul>
         </div>
-        <a class="btn btn-warning" href="/comments">Comments</a>
+        <a class="btn btn-warning w-25" href="{{route('contact-us.create')}}">Contact Us</a>
+        <div class="pl-3 w-50">The current date is <b>{{ date('Y-m-d') }}.</b></div>
     </div>
 </header>
 <div class="container">
@@ -78,7 +79,6 @@
                role="button">Admin Panel</a>
         @endif
     @endguest
-
 </div>
 <script src="/js/bootstrap.min.js"></script>
 </body>

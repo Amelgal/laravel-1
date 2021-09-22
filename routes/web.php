@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [BlogController::class, 'index'])->name('index');
 Route::get('/category/{slug}', [BlogController::class, 'getPostsByCategory'])->name('getPostsByCategory');
 Route::get('/category/{slug_category}/{slug_post}', [BlogController::class, 'getPost'])->name('getPost');
+
+Route::resource('/contact-us', ContactController::class);
+
+
 Route::post('/comments/check/{id}', [MainController::class, 'checkComments'])->name('checkComments');
 
 
