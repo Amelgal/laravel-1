@@ -20,7 +20,7 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
-    static public function getCachePost($slug_post)
+    /*static public function getCachePost($slug_post)
     {
         $key = static::class."_".$slug_post;
         $result = Cache::get($key, false);
@@ -44,5 +44,5 @@ class Post extends Model
         }
 
         return $result;
-    }
+    }*/
 }

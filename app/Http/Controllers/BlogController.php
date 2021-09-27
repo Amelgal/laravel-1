@@ -2,31 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Post;
+use App\Repositories\Interfaces\PostRepositoryInterface;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
+    private $postRepository;
+
+    public function __construct(PostRepositoryInterface $postRepository)
+    {
+        $this->postRepository = $postRepository;
+    }
+
     public function index()
     {
+        /*Post::getCachePosts(),*/
         return view('pages.index', [
-            'posts' => Post::getCachePosts(),
+            'posts' => $this->postRepository->all(),
         ]);
     }
 
     public function getPostsByCategory($slug)
     {
-        $current_category = Category::getCacheCategory($slug);
-
+        /*Category::getCacheCategory($slug);*/
         return view('pages.index', [
-            'posts' => $current_category->posts()->paginate(4),
+            'posts' =>  $this->postRepository->getPostsByCategory($slug)->posts()->paginate(4),
         ]);
     }
 
     public function getPost($slug_category, $slug_post)
     {
-        $post = Post::getCachePost($slug_post);
+        /*Post::getCachePost($slug_post);*/
+        $post =  $this->postRepository->getPost($slug_post);
 
         return view('pages.show-post', [
             'post' => $post,

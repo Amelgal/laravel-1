@@ -20,7 +20,7 @@ class Category extends Model
         return $this->hasMany(Post::class);
     }
 
-    static public function getCacheCategory($slug)
+    /*static public function getCacheCategory($slug)
     {
         $key = static::class."_cat_".$slug;
         $result = Cache::get($key, false);
@@ -42,5 +42,5 @@ class Category extends Model
             Cache::put($key, $result, now()->addMinutes(2));
         }
         return $result;
-    }
+    }*/
 }
