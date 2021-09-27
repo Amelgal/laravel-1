@@ -12,7 +12,6 @@ class BlogController extends Controller
     {
         return view('pages.index', [
             'posts' => Post::getCachePosts(),
-            'categories' => $this->getCategoriesList(),
         ]);
     }
 
@@ -22,7 +21,6 @@ class BlogController extends Controller
 
         return view('pages.index', [
             'posts' => $current_category->posts()->paginate(4),
-            'categories' => $this->getCategoriesList(),
         ]);
     }
 
@@ -32,14 +30,8 @@ class BlogController extends Controller
 
         return view('pages.show-post', [
             'post' => $post,
-            'categories' => $this->getCategoriesList(),
             'slug_category' => $slug_category,
             'comments' => $post->comments
         ]);
-    }
-
-    public function getCategoriesList()
-    {
-        return Category::getCacheCategories();
     }
 }

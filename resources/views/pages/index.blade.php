@@ -5,7 +5,7 @@
 @section('content')
     @include('includes.categories')
     @foreach($posts as $post)
-        <div class="card mb-4">
+        <div class="card mb-4 mr-5 ml-5">
             <div class="card-header">
                 <a href="{{route('getPostsByCategory', $post->category->slug)}}">{{$post->category->title}}</a>
             </div>
