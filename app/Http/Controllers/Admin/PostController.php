@@ -29,10 +29,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        return view('admin.post.create', [
-            'categories' => $categories
-        ]);
+        return view('admin.post.create');
     }
 
     /**
@@ -74,10 +71,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        $categories = Category::all();
         return view('admin.post.edit', [
             'post' => $post,
-            'categories'=>$categories
         ]);
     }
 
