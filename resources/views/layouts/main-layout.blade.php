@@ -72,7 +72,7 @@
 </header>
 <h1 class="mt-5 mb-4 text-center">@yield('title')</h1>
 <div class="container d-md-flex">
-    <div>
+    <div class="w-100">
         @yield('content')
     </div>
     <nav id="sidebar">

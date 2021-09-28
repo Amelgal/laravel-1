@@ -2,10 +2,9 @@
 
 namespace App\Providers;
 
-use App\Models\Category;
-use App\Repositories\Category\CategoryCachedRepository;
-use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use App\View\Components\CategoriesList;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,8 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::share([
-           'categories'=> CategoryCachedRepository::all(),
-        ]);
+        Blade::component('categories-list', CategoriesList::class);
     }
 }

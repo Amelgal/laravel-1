@@ -3,7 +3,7 @@
 @section('title', 'Contact Us')
 
 @section('content')
-    <div>
+    <div class="">
         <div class="m-5">
             <h2>Send your contact to us</h2>
             @if (session('success'))

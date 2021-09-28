@@ -15,20 +15,20 @@ class CategoryCachedRepository implements CategoryRepositoryInterface
         $this->categoryRepository = $categoryRepository;
     }
 
-    static public function all()
+    public function all()
     {
         // TODO: Implement all() method.
 
         return Cache::remember(static::class."_categories_list", 3600, function () {
-            return CategoryRepository::all();
+            return $this->categoryRepository->all();
         });
     }
 
-    public static function getCategory(string $category_slug)
+    public function getCategory(string $category_slug)
     {
         // TODO: Implement getCategory() method.
         return Cache::remember(static::class."_categories_list", 3600, function () use ($category_slug) {
-            return CategoryRepository::getCategory($category_slug);
+            return $this->categoryRepository->getCategory($category_slug);
         });
     }
 }

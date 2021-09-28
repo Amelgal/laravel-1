@@ -4,7 +4,7 @@ namespace App\Repositories\Interfaces;
 
 interface CategoryRepositoryInterface
 {
-    static public function all();
+    public function all();
 
-    static public function getCategory(string $category_slug);
+    public function getCategory(string $category_slug);
 }
