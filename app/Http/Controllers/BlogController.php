@@ -41,4 +41,9 @@ class BlogController extends Controller
             'comments' => $post->comments
         ]);
     }
+
+    public function testPHP()
+    {
+        return view('pages.test-php');
+    }
 }

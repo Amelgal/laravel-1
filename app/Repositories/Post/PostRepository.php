@@ -23,7 +23,6 @@ class PostRepository implements PostRepositoryInterface
     public function getPostsByCategory(string $category_slug)
     {
         // TODO: Implement getPostsByCategory() method.
-        $current_category = Category::where('slug', $category_slug)->first();
-        return $current_category;
+        return Category::where('slug', $category_slug)->first();
     }
 }

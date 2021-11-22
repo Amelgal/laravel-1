@@ -10,6 +10,8 @@ class CategoryCachedRepository implements CategoryRepositoryInterface
 {
     private $categoryRepository;
 
+    const TTL = 3600;
+
     public function __construct(CategoryRepository $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
@@ -19,7 +21,7 @@ class CategoryCachedRepository implements CategoryRepositoryInterface
     {
         // TODO: Implement all() method.
 
-        return Cache::remember(static::class."_categories_list", 3600, function () {
+        return Cache::remember(static::class."_categories_list", self::TTL, function () {
             return $this->categoryRepository->all();
         });
     }
@@ -27,7 +29,7 @@ class CategoryCachedRepository implements CategoryRepositoryInterface
     public function getCategory(string $category_slug)
     {
         // TODO: Implement getCategory() method.
-        return Cache::remember(static::class."_categories_list", 3600, function () use ($category_slug) {
+        return Cache::remember(static::class."_categories_list", self::TTL, function () use ($category_slug) {
             return $this->categoryRepository->getCategory($category_slug);
         });
     }
