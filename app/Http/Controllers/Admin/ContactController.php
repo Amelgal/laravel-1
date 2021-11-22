@@ -4,13 +4,21 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactStoreRequest;
-use App\Mail\ContactSendMail;
+//use App\Mail\ContactSendMail;
 use App\Models\Contact;
+use App\Services\ContactService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
+//use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
+    protected $contactService;
+
+    public function __construct(ContactService $contactService)
+    {
+        $this->contactService = $contactService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -31,7 +39,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.contact.create');
     }
 
     /**
@@ -42,7 +50,10 @@ class ContactController extends Controller
      */
     public function store(ContactStoreRequest $request)
     {
-        //
+        $this->contactService->add($request);
+
+        return redirect()->back()->withSuccess('Success. Contact added successfully..');
+
     }
 
     /**
@@ -88,5 +99,13 @@ class ContactController extends Controller
     public function destroy(Contact $contact)
     {
         //
+    }
+
+    public function sendEmail($contactId)
+    {
+        $this->contactService->sendMail(Contact::find($contactId));
+
+        return redirect()->back()->withSuccess('Success. Email was sent');
+
     }
 }

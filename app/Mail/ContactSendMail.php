@@ -18,9 +18,9 @@ class ContactSendMail extends Mailable
      *
      * @return void
      */
-    public function __construct(ContactStoreRequest $request)
+    public function __construct( $contactData )
     {
-        $this->contactData = $request;
+        $this->contactData = $contactData;
     }
 
     /**

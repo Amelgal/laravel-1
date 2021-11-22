@@ -3,13 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactStoreRequest;
-use App\Mail\ContactSendMail;
+//use App\Mail\ContactSendMail;
 use App\Models\Contact;
+use App\Services\ContactService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
+//use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
+    protected $contactService;
+
+    public function __construct(ContactService $contactService)
+    {
+        $this->contactService = $contactService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -38,20 +46,8 @@ class ContactController extends Controller
      */
     public function store(ContactStoreRequest $request)
     {
-        //$request->flash();
-
-        $contact = new Contact();
-
-        $contact->name = $request->name;
-        $contact->email = $request->email;
-        $contact->subject = $request->subject;
-        $contact->text = $request->text;
-
-        $contact->save();
-
-        Mail::to('myblogcodeactivation@gmail.com')->send(
-            new ContactSendMail($request)
-        );
+        $contact = $this->contactService->add($request);
+        $this->contactService->sendMail($contact);
 
         return redirect()->back()->withSuccess('Success. Thank you for giving us your contacts..');
     }

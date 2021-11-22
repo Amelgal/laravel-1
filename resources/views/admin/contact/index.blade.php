@@ -55,6 +55,7 @@
                                 <td>{{$contact->subject}}</td>
                                 <td>{{$contact->text}}</td>
                                 <td class="project-state">
+                                    <a href="{{route('sendEmail',$contact->id)}}">Send email</a>
                                     <span class="badge badge-success">Success</span>
                                 </td>
                             </tr>

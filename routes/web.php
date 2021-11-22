@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [BlogController::class, 'index'])->name('index');
 Route::get('/category/{slug}', [BlogController::class, 'getPostsByCategory'])->name('getPostsByCategory');
 Route::get('/category/{slug_category}/{slug_post}', [BlogController::class, 'getPost'])->name('getPost');
+Route::get('/test-php', [BlogController::class, 'testPHP'])->name('testPHP');
 
 Route::resource('/contact-us', \App\Http\Controllers\ContactController::class);
 
@@ -35,6 +36,7 @@ Route::middleware(['role:admin'])->prefix('admin-dashboard')->group(function () 
     Route::resource('post', PostController::class);
     Route::resource('user', UserController::class);
     Route::resource('contact', \App\Http\Controllers\Admin\ContactController::class);
+    Route::get('/contact/{contact_id}/send-mail', [\App\Http\Controllers\Admin\ContactController::class, 'sendEmail'])->name('sendEmail');
 
 });
 
