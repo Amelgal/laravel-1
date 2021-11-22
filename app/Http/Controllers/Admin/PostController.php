@@ -29,7 +29,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.post.create');
+        $categories = Category::orderBy('title', 'desc')->get();
+        return view('admin.post.create', [
+            'categories' => $categories,
+        ]);
     }
 
     /**
