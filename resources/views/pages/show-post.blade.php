@@ -3,7 +3,7 @@
 @section('title', $post->title)
 
 @section('content')
-   <x-categories-list />
+
     <article>
         {!! $post->text !!}
     </article>

@@ -71,6 +71,9 @@
     </div>
 </header>
 <h1 class="mt-5 mb-4 text-center">@yield('title')</h1>
+
+<x-categories-list />
+
 <div class="container d-md-flex">
     <div class="w-100">
         @yield('content')

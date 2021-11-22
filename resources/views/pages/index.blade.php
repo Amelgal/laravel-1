@@ -3,7 +3,7 @@
 @section('title', 'My blog')
 
 @section('content')
-    <x-categories-list />
+
     @foreach($posts as $post)
         <div class="card mb-4 mr-5 ml-5">
             <div class="card-header">
